@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 const HotelSchema = new mongoose.Schema({
     name:{
-        tyep:String,
-        // required:true,
+        type:String,
+        required:true,
     },
-    tyep:{
+    type:{
         type:String,
         required:true
     },
@@ -18,6 +18,14 @@ const HotelSchema = new mongoose.Schema({
     },
     photos:{
         type:[String]
+    },
+    distance:{
+        type:String,
+        required:true,
+    },
+    title:{
+        type:String,
+        required:true
     },
     desc:{
         type:String,
