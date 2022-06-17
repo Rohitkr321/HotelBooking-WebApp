@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useNavigate} from 'react-router-dom'
 import {
   faBed,
   faPlane,
@@ -24,6 +25,7 @@ function Header({ type }) {
   ]);
 
   const [openDate, setOpenDate] = useState(false);
+  const [destination, setDestination] = useState("");
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
     adult: 1,
@@ -39,6 +41,12 @@ function Header({ type }) {
       };
     });
   };
+
+  const navigate = useNavigate()
+
+  const handleSearch = ()=>{
+      navigate("/hotels",{state:{destination,date,options}})
+  }
 
   return (
     <div className="header">
@@ -81,6 +89,7 @@ function Header({ type }) {
                 type="text"
                 placeholder="Where are you going?"
                 className="headerSearchInput"
+                onChange={(e)=>setDestination(e.target.value)}
               />
             </div>
             <div className="headerSearchItem">
@@ -97,6 +106,7 @@ function Header({ type }) {
                   editableDateInputs={true}
                   moveRangeOnFirstSelection={false}
                   ranges={date}
+                  minDate = {new Date()}
                   className="date"
                   onChange={(item) => setDate([item.selection])}
                 />
@@ -177,7 +187,7 @@ function Header({ type }) {
               )}
             </div>
             <div className="headerSearchItem">
-              <button className="headerBtn">Search</button>
+              <button className="headerBtn" onClick={handleSearch}>Search</button>
             </div>
           </div>
         </>}
