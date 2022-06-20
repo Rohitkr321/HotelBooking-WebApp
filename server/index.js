@@ -6,6 +6,7 @@ import usersRouter from './routes/users.js'
 import roomsRouter from './routes/rooms.js'
 import hotelsRouter from './routes/hotels.js'
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
 const app = express()
 dotenv.config()
 
@@ -27,6 +28,7 @@ mongoose.connection.on("connected",()=>{
 })
 /*********************! MiddileWare !*********************************** */
 app.use(cookieParser())
+app.use(cors())
 app.use(express.json())
 app.use("/auth",authRouter)
 app.use("/users",usersRouter)
@@ -61,5 +63,5 @@ app.get("/",(req, res)=>{
 /***********************! Server Connection !********************************** */
 app.listen(8800, () => {
     connect()
-    console.log("Connection Established From BackEnd")
+    console.log("Server is running on port 8800")
 })
