@@ -8,7 +8,7 @@ const RoomSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    maxPepole: { 
+    maxPeople: { 
         type: Number,
         required: true
     },
